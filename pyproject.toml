@@ -1,0 +1,120 @@
+[project]
+name = "CourseWork2026"
+version = "0.0.0"
+description = "Phylogenomic Analysis of Flap Endonucleases of the Xni Family."
+authors = [
+    { name = "Emelianov Artem", email = "penguin5726@proton.me" },
+]
+dependencies = [
+    "openpyxl>=3.1",
+    "types-openpyxl",
+]
+requires-python = ">=3.14"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+
+[project.urls]
+Homepage = "https://github.com/Pukhosos/CourseWork2026"
+Repository = "https://github.com/Pukhosos/CourseWork2026"
+Issues = "https://github.com/Pukhosos/CourseWork2026/issues"
+
+[project.scripts]
+extract-cog = "scripts.cog_parser.extract:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts"]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "flake8",
+    "flake8-bugbear",
+    "flake8-builtins",
+    "flake8-comprehensions",
+    "flake8-fixme",
+    "flake8-pyproject",
+    "flake8-quotes",
+    "flake8-simplify",
+    "pep8-naming",
+    "mypy",
+    "pre-commit",
+]
+
+[tool.isort]
+py_version = 314
+skip_gitignore = true
+line_length = 88
+multi_line_output = 3
+use_parentheses = true
+atomic = true
+lines_before_imports = 0
+combine_star = true
+include_trailing_comma = true
+from_first = true
+verbose = true
+force_alphabetical_sort_within_sections = true
+profile = "black"
+honor_noqa = true
+src_paths = ["scripts"]
+remove_redundant_aliases = true
+float_to_top = true
+only_modified = true
+star_first = true
+
+[tool.black]
+target-version = ["py314"]
+line-length = 88
+skip-string-normalization = true
+
+[tool.flake8]
+count = true
+max-line-length = 88
+statistics = true
+max-complexity = 16
+exclude = [
+    "__pycache__",
+    ".git",
+    ".mypy_cache",
+    ".venv",
+]
+extend-select = ["A", "B", "B9", "C4", "N", "Q", "SIM"]
+extend-ignore = ["E203", "W503"]
+inline-quotes = "single"
+multiline-quotes = "double"
+docstring-quotes = "double"
+avoid-escape = false
+check-inside-f-strings = true
+
+[tool.mypy]
+python_version = "3.14"
+files = ["scripts"]
+mypy_path = ["scripts"]
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_return_any = true
+warn_unreachable = true
+allow_untyped_globals = false
+allow_redefinition = false
+extra_checks = true
+implicit_reexport = true
+strict_equality = true
+strict_bytes = true
+show_error_context = true
+show_column_numbers = true
+show_error_code_links = true
+pretty = true
+error_summary = true
+warn_incomplete_stub = true

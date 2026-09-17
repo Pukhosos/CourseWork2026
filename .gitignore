@@ -1,1 +1,10 @@
+__pycache__
+
 .local
+.mypy_cache
+.venv
+
+data/large/*
+!data/large/.gitkeep
+
+scripts/*.egg-info

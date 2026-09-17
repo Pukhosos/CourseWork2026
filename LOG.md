@@ -56,3 +56,101 @@ The 7 remaining `COG0749` sequences also revealed no overlap:
 `COG0258` alone will define the initial COG-derived Xni/FEN homolog set.
 No additional COG has been identified as a clearly related paralogous family
 requiring inclusion.
+
+## Relevant proteins extraction
+
+The procedure aims to select
+
+$$
+\{\text{all COG0258 assignments}\}
+\cap
+\{\text{assignments from the 275 genomes}\}
+$$
+
+and then recover the corresponding amino-acid sequences from `COGorg24.faa`.
+
+In order to accomplish that, I wrote a [parsing script](
+    scripts/cog_parser/extract.py
+) and ran it with
+
+```sh
+extract-cog \
+    --cog COG0258 \
+    --genomes data/27789-154191-1-SP.xlsx \
+    --assignments data/large/cog-24.cog.csv \
+    --sequences data/large/COGorg24.faa \
+    --output data/COG0258 \
+    --suppress-errors
+```
+
+which executed successfully
+
+```sh
+Representative genomes:       275
+Selected COG assignments:     306
+Genomes containing the COG:   273
+Matched sequences:            306
+Ambiguous FASTA records:      0
+Duplicate FASTA matches:      0
+Unmatched assignments:        0
+Output directory:             ~/Desktop/Study/FBB/CourseWork2026/data/COG0258
+```
+
+and produced
+
+```sh
+data/COG0258/
+├── COG0258_275_ambiguous.tsv
+├── COG0258_275_raw.faa
+├── COG0258_275_raw.tsv
+└── COG0258_275_unmatched.tsv
+```
+
+- `COG0258_275_ambiguous.tsv` — FASTA records that could not be matched
+  unambiguously;
+- `COG0258_275_raw.faa` — corresponding amino-acid sequences;
+- `COG0258_275_raw.tsv` — metadata for successfully matched assignments;
+- `COG0258_275_unmatched.tsv` — selected COG assignments for which no
+  sequence was recovered.
+
+There are three source files, and each contributes different information:
+
+```txt
+27789-154191-1-SP.xlsx
+        │
+        │ Which genomes do we want?
+        ▼
+275 representative
+    assemblies
+        │
+        │
+        ├──────────────────────┐
+        │                      │
+        ▼                      │
+  cog-24.cog.csv               │
+        │                      │
+        │ Which proteins       │
+        │ belong to COG0258?   │
+        ▼                      │
+COG0258 assignments from ◄─────┘
+    the 275 genomes
+        │
+        │ Which sequences correspond
+        │ to those assignments?
+        ▼
+   COGorg24.faa
+        │
+        ▼
+COG0258_275_raw.tsv
+COG0258_275_raw.faa
+```
+
+### Result
+
+The 2 files with filtered proteins sequences and assignments metadata
+
+```sh
+data/COG0258/
+├── COG0258_275_raw.faa
+└── COG0258_275_raw.tsv
+```
