@@ -154,3 +154,125 @@ data/COG0258/
 ├── COG0258_275_raw.faa
 └── COG0258_275_raw.tsv
 ```
+
+## Quality control
+
+[DomainAnalyzer](https://boabio.belozersky.msu.ru/DomainAnalyser) shows the
+following picture of the filtered proteins:
+
+![07-DomainAnalyzer-filtered-proteins](
+    assets/07-DomainAnalyzer-filtered-proteins.svg
+)
+
+To analyze the relevance of the selected proteins, I wrote a [QC script](
+    scripts/qc.py
+) and ran it with
+
+```sh
+cog-qc \
+    --metadata data/COG0258/COG0258_275_raw.tsv \
+    --sequences data/COG0258/COG0258_275_raw.faa \
+    --output data/COG0258/qc
+```
+
+which produced
+
+```txt
+data/COG0258/qc
+├── exclude.faa
+├── exclude.tsv
+├── keep.faa
+├── keep.tsv
+├── qc.tsv
+├── review.faa
+├── review.tsv
+└── summary.txt
+```
+
+There were 0 proteins excluded automatically and only 6 proteins were scheduled
+for manual review.
+
+### Protein review
+
+[DomainAnalyzer](https://boabio.belozersky.msu.ru/DomainAnalyser) shows the
+following picture:
+
+![08-DomainAnalyzer-manual-review](assets/08-DomainAnalyzer-manual-review.png)
+
+The bottom two proteins seem to have lower E-value compared to others.
+
+#### WP_013045263.1
+
+`WP_013045263.1` is annotated as class 2, which means
+**Most of protein + part of COG profile**.
+
+Its relevant statistics are
+
+```txt
+protein length:       242 aa
+protein footprint:    1–242
+protein coverage:     100%
+COG profile length:   310
+profile footprint:    47–248
+profile coverage:     65.16%
+membership class:     2
+E-value (COG):        8.78e-13
+DomainAnalyser:       ~40–209, E = 9.5e-12
+```
+
+It corresponds to only about 65% of the 310-position COG profile:
+
+```txt
+1          47                    248          310
+|----------|=====================|-------------|
+                WP_013045263.1
+```
+
+**Verdict:** insufficient `COG0258` match, exclude.
+
+#### WP_158067921.1
+
+`WP_158067921.1` is annotated as class 2, which means
+**Partial protein + partial COG profile**.
+
+Its relevant statistics are
+
+```txt
+protein length:       339 aa
+protein footprint:    1–225
+protein coverage:     66.37%
+COG profile length:   310
+profile footprint:    13–207
+profile coverage:     62.90%
+membership class:     3
+E-value (COG):        4.04e-21
+DomainAnalyser:       ~2–235, E = 3.4e-24
+```
+
+The protein itself is not short, instead it is roughly:
+
+```txt
+1                 225                339
+|==================|------------------|
+      COG0258           unassigned
+```
+
+And the corresponding profile region is approximately:
+
+```text
+1  13                  207                 310
+|--|====================|-------------------|
+       matched region
+```
+
+**Verdict:** partial `COG0258` match, exclude.
+
+### Result
+
+Curated files are saved in
+
+```txt
+data/COG0258/curated
+├── COG0258_275.faa
+└── COG0258_275.tsv
+```

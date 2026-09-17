@@ -21,6 +21,7 @@ Issues = "https://github.com/Pukhosos/CourseWork2026/issues"
 
 [project.scripts]
 extract-cog = "scripts.cog_parser.extract:main"
+cog-qc = "scripts.qc:main"
 
 [build-system]
 requires = ["hatchling"]

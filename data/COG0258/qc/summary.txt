@@ -1,0 +1,9 @@
+Proteins: 306
+
+QC status:
+  keep: 300
+  review: 6
+
+Flags:
+  membership_class_2: 3
+  membership_class_3: 3
