@@ -276,3 +276,123 @@ data/COG0258/curated
 ├── COG0258_275.faa
 └── COG0258_275.tsv
 ```
+
+## Identification of experimentally characterized homologs
+
+### PDB
+
+I have chosen 5 representative proteins from different groups and queried BLASTP
+against PDB:
+
+- [GCA_000008085.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=ASMBNAUY014
+)
+    ![09-DomainAnalyzer-GCA_000008085.1-pdb](
+        assets/09-DomainAnalyzer-GCA_000008085.1-pdb.png
+    )
+- [GCF_000006805.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=ASX7XF79014
+)
+    ![10-DomainAnalyzer-GCF_000006805.1-pdb](
+        assets/10-DomainAnalyzer-GCF_000006805.1-pdb.png
+    )
+- [GCF_000007005.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=ASXAS5XH014
+)
+    ![11-DomainAnalyzer-GCF_GCF_000007005.1-pdb](
+        assets/11-DomainAnalyzer-GCF_000007005.1-pdb.png
+    )
+- [GCA_025839675.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=ASXNBAPJ014
+)
+    ![12-DomainAnalyzer-GCA_025839675.1-pdb](
+        assets/12-DomainAnalyzer-GCA_025839675.1-pdb.png
+    )
+- [GCF_000019605.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=ASXXDK6F014
+)
+    ![13-DomainAnalyzer-GCF_000019605.1-pdb](
+        assets/13-DomainAnalyzer-GCF_000019605.1-pdb.png
+    )
+
+To remove duplicate findings I wrote a
+[deduplication script](scripts/deduplicate.py) ran it with
+
+```sh
+deduplicate \
+    data/COG0258/experimental/pdb/hitmaps/*.csv \
+    --output data/COG0258/experimental/pdb/candidates.tsv
+```
+
+which executed successfully
+
+```txt
+Read 142 HSPs; collapsed to 140 query-chain hits; found 41 unique chains.
+```
+
+and produced
+
+```txt
+data/COG0258/experimental/pdb/candidates.tsv
+```
+
+Then excluded 2 entries - `9PD3_S` and `9PD5_S` - where `COG0258` domain is
+split into 2 parts.
+
+The [resulting curated file](data/COG0258/curated/pdb.tsv) contains 39
+sequences.
+
+### Swiss-Prot
+
+I queried BLASTP with the same 5 representative proteins against Swiss-Prot:
+
+- [GCA_000008085.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=AT2N4J5J014
+)
+- [GCF_000006805.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=AT2KB5HY014
+)
+- [GCF_000007005.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=AT2RJ1YX016
+)
+- [GCA_025839675.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=AT2VA7D2016
+)
+- [GCF_000019605.1](
+    https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=AT2XDX7R014
+)
+
+To remove duplicate findings I ran
+
+```sh
+deduplicate \
+    data/COG0258/experimental/swiss-prot/hitmaps/*.csv \
+    --output data/COG0258/experimental/swiss-prot/candidates.tsv
+```
+
+which executed successfully
+
+```txt
+Read 936 HSPs; collapsed to 929 query-chain hits; found 211 unique chains.
+```
+
+and produced
+
+```txt
+data/COG0258/experimental/swiss-prot/candidates.tsv
+```
+
+Then I excluded 7 entries where `COG0258` domain is split or absent.
+
+The [resulting curated file](data/COG0258/curated/swiss-prot.tsv) contains 204
+sequences.
+
+## Result
+
+Curated files are saved in
+
+```txt
+data/COG0258/curated/
+├── swiss-prot.faa
+└── swiss-prot.tsv
+```

@@ -1,0 +1,43 @@
+#Legend created at: Fri Sep 18 02:29:45 2026
+#Number	Domain ID	Color	Description
+28	COG0258	#0000ff	5'-3' exonuclease Xni/ExoIX (flap endonuclease)
+#Output file of <udav_COGassign.py> script created at: Fri Sep 18 02:29:45 2026
+#Parameters used for the domain search filtering:
+#                         E-value threshold: 1e-05
+#                              E-value used: i-evalue
+#                         Overlap threshold: 5%
+#                          Domains required: None
+#                    Unite partial HMM hits: True
+#     Max distance between parts in protein: 50
+#     Max partion of larger HMM hit overlap: 30
+#
+#Protein ID	Length(aa)	Domain data	Domain formula
+1MC8_A	343	COG0258|12..327..2.8e-101..336.9..1..301	COG0258
+1B43_A	340	COG0258|12..326..9.5e-103..341.7..1..300	COG0258
+1RXV_A	336	COG0258|12..323..1.2e-104..348.0..1..297	COG0258
+2IZO_A	346	COG0258|10..331..2.4e-97..324.0..2..301	COG0258
+3ORY_A	363	COG0258|30..345..5.1e-98..326.2..5..301	COG0258
+4WA8_A	355	COG0258|21..339..1.1e-103..344.8..2..300	COG0258
+1A76_A	326	COG0258|14..309..7.2e-86..286.3..3..297	COG0258
+8YJH_D	380	COG0258|23..331..2.2e-71..238.7..5..299	COG0258
+1UL1_X	379	COG0258|22..330..2.2e-71..238.7..5..299	COG0258
+9RCI_A	342	COG0258|23..331..1.5e-71..239.3..5..299	COG0258
+3Q8K_A	341	COG0258|22..330..1.5e-71..239.3..5..299	COG0258
+5FV7_A	353	COG0258|23..331..1.7e-71..239.1..5..299	COG0258
+5ZOD_A	333	COG0258|23..331..1.5e-71..239.3..5..299	COG0258
+6TNZ_H	380	COG0258|23..331..6.5e-71..237.2..5..299	COG0258
+5K97_A	341	COG0258|22..330..1.5e-70..236.0..5..299	COG0258
+5UM9_A	341	COG0258|22..330..7.3e-71..237.0..5..299	COG0258
+5ZOG_A	344	COG0258|23..332..4.8e-71..237.6..5..300	COG0258
+5KSE_A	341	COG0258|22..330..6.1e-70..234.0..5..299	COG0258
+3Q8M_A	341	COG0258|22..330..4.4e-71..237.7..5..299	COG0258
+5ZOE_A	333	COG0258|23..331..4.5e-71..237.7..5..299	COG0258
+5ZOF_A	333	COG0258|23..331..1.8e-70..235.7..5..299	COG0258
+6VBH_A	346	COG0258|16..240..4.5e-40..135.9..3..221	COG0258
+4Q0W_A	365	COG0258|16..291..6.7e-43..145.2..3..244	COG0258
+4Q0R_A	367	COG0258|18..291..6.4e-41..138.7..3..242	COG0258
+6TUX_A	351	COG0258|17..246..4.9e-34..116.1..3..221	COG0258
+6TUS_B	355	COG0258|17..246..5e-34..116.1..3..221	COG0258
+6TUS_A	356	COG0258|17..246..5.1e-34..116.1..3..221	COG0258
+6TUR_AAA	355	COG0258|17..246..3.5e-34..116.6..3..221	COG0258
+# [ok]
